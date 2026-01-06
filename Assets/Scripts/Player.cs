@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        float directionY = Input.GetAxisRaw("Vertical");
-        playerDirection = new Vector2(0, directionY).normalized;
+        // Keyboard input (W/S atau Up/Down)
+        float directionY = Keyboard.current.wKey.isPressed ? 1 :
+                           Keyboard.current.sKey.isPressed ? -1 : 0;
+
+        playerDirection = new Vector2(0, directionY);
     }
 
     void FixedUpdate()
