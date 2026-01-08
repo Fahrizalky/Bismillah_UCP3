@@ -4,15 +4,24 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    private float score;
+    private int score = 0;
+    private bool isGameOver = false;
 
     void Update()
     {
-        // Player masih hidup
-        if (GameObject.FindWithTag("Player") != null)
-        {
-            score += Time.deltaTime;
-            scoreText.text = ((int)score).ToString();
-        }
+        if (isGameOver) return;
+
+        score += 1;
+        scoreText.text = score.ToString();
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public void StopScore()
+    {
+        isGameOver = true;
     }
 }
